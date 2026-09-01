@@ -1,8 +1,63 @@
-# Files for Git to ignore
+# --- Python bytecode / build artifacts ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
 
-.DS_Store
-**/data
-*.rds
+# --- Environments ---
+.venv/
+venv/
+env/
+.python-version
 
+# --- Data ---
+# h5ad objects here run 1-8 GB each; never commit them.
 data/
-*/__pycache__/
+*.h5ad
+*.h5
+*.zarr/
+*.loom
+*.mtx
+*.parquet
+
+# Xenium raw outputs
+*.zip
+*.tar.gz
+transcripts.csv*
+cell_feature_matrix*
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+# Uncomment to strip notebook outputs from version control entirely:
+# *.ipynb
+
+# --- Figures / results ---
+figures/
+results/
+*.pdf
+*.svg
+*.png
+
+# --- Caches ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.cache/
+*.log
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# --- Keep these tracked ---
+# uv.lock is the reproducibility record - do NOT ignore it.
+!uv.lock
+!pyproject.toml
