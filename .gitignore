@@ -3,3 +3,6 @@
 .DS_Store
 **/data
 *.rds
+
+data/
+__pycache__/
