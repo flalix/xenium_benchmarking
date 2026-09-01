@@ -1,0 +1,50 @@
+
+cd ~
+mkdir micromamba
+cd ~/micromamba
+
+curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+export MAMBA_ROOT_PREFIX=~/micromamba
+ls -ls ~/micromamba/
+
+eval "$(./bin/micromamba shell hook -s bash)"
+
+micromamba search -c conda-forge python=3.7
+micromamba create -n xb37 -c conda-forge python=3.7
+micromamba run -n xb37 mycommand
+
+micromamba activate xb37
+
+===============================
+
+cd ~/uv/Xenium_benchmarking
+
+export MAMBA_ROOT_PREFIX=~/micromamba
+micromamba activate xb37
+
+export PATH="$HOME/micromamba/bin:$PATH"
+export MAMBA_ROOT_PREFIX="$HOME/micromamba"
+
+micromamba --version
+ls ~/micromamba/envs
+
+micromamba run -n xb37 python -V
+
+uv venv --python ~/micromamba/envs/xb37/bin/python .venv
+
+micromamba shell init -s bash -r ~/micromamba
+source ~/.bashrc
+
+===============================
+
+uv sync
+
+
+source .venv/bin/activate
+python -V
+python -c "import scanpy, squidpy, pandas, numpy; print(scanpy.__version__, squidpy.__version__, pandas.__version__, numpy.__version__)"
+uv pip freeze | sort > /tmp/uv_env.txt
+
+
+
+
